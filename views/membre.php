@@ -8,7 +8,7 @@ echo '<pre>';
 print_r($_POST);
 echo '</pre>';
 
-
+// commentaire 
 
     $membre = new membreController($_POST['pseudo'],$_POST['pass'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['civilite'],$_POST['statut']);
 /*     $membre->inscription(); */
