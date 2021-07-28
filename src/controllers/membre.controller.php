@@ -12,11 +12,11 @@ class MembreController{
 
 
   
-  public function __construct($PseudoM,$passM,$NM,$PrenomM,$EM,$CM,$SM)
+  public function __construct($PseudoM,$PassM,$NM,$PrenomM,$EM,$CM,$SM)
+  //
   {
-
     $this->setPseudoMembre($PseudoM);
-    $this->setPassMembre($PassMembre);
+    $this->setPassMembre($PassM);
     $this->setNMembre($NM);
     $this->setPrenomMembre($PrenomM);
     $this->setEmailMembre($EM);
@@ -36,8 +36,8 @@ class MembreController{
     return $this->PassMembre;
   }
   
-  public function setPassMembre($PassMembre){
-    return $this->PassMembre = $PassMembre;
+  public function setPassMembre($PassM){
+    return $this->PassMembre = $PassM;
   }
   
   public function getNMembre()
@@ -87,14 +87,13 @@ class MembreController{
   public function setStatutMembre($SM) {
     return $this->StatutMembre = $SM;
   }
-  
-/*   
+   
   public function inscription(){
     $MembreModel = new MembreModel;
     $MembreModel->insert($this->PseudoMembre,$this->PassMembre,$this->NomMembre,$this->PrenomMembre,$this->EmailMembre,$this->CiviliteMembre,$this->StatutMembre);
+    //
   }
-    
-     */
+
     
     
   }
