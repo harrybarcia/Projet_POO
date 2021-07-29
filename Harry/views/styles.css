@@ -1,0 +1,91 @@
+*{
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  body{
+    background-color: #E6E6DC;
+    color: #666662;
+    margin: 0;
+  
+  }
+  
+  header{
+    margin: 0 auto;
+    background: #CCCCC4;
+    height: 200px;
+    border-bottom: solid black 2px;
+  }
+  
+  nav ul li{
+    list-style: none;
+  }
+  
+  nav ul li a{
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+  }
+  nav ul li a:hover{
+    color: #A9A9A3;
+    text-decoration: underline;
+  }
+  
+  nav{
+    padding-top: 70px;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  
+  nav ul{
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .right{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+  }
+  
+  form{
+    width: 300px;
+    line-height: 60px;
+    margin: 0 auto;
+  }
+  
+  #formulaire{
+    display: block;
+    text-align: center;
+  }
+  
+  h1{
+    font-weight: 800;
+    text-decoration: underline;
+    color: #000;
+    text-align: center;
+  }
+  
+  table{
+    border: solid black 2px;
+    margin: auto;
+  }
+  
+  th{
+    border: solid black 2px;
+  }
+  td{
+    border: solid black 2px;
+    padding: 5px 15px;
+    text-align: center;
+  }
+  
+  .champ{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  input{
+    height: 20px;
+  }
