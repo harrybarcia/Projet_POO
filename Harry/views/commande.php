@@ -4,11 +4,12 @@ require_once('../src/controllers/commande.controller.php');
 require_once('../src/models/commande.model.php');
 
 
-if (!empty($_POST['id_commande']) && !empty($_POST['id_membre']) && !empty($_POST['id_vehicule']) && !empty($_POST['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) && !empty($_POST['prix_total'])){
-   
+if (!empty($_POST['id_membre']) && !empty($_POST['id_vehicule']) && !empty($_POST['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) && !empty($_POST['prix_total'])){
+   //$_POST['id_commande']) && !empty(
     echo "test 1";
     
-    $commande = new CommandeController($_POST['id_commande'], $_POST['id_membre'], $_POST['id_vehicule'], $_POST['id_agence'], $_POST['date_d'], $_POST['date_f'], $_POST['prix_total']);
+    $commande = new CommandeController( $_POST['id_membre'], $_POST['id_vehicule'], $_POST['id_agence'], $_POST['date_d'], $_POST['date_f'], $_POST['prix_total']);
+    //$_POST['id_commande'],
     $commande->inscription();
 
     echo "test 2";
@@ -30,9 +31,9 @@ if (!empty($_POST['id_commande']) && !empty($_POST['id_membre']) && !empty($_POS
 
   <form action="commande.php" method="post">
 
-  <label for="id_commande">id_commande</label>
+  <!-- <label for="id_commande">id_commande</label>
   <input type="text" id="id_commande" name="id_commande">
-  
+   -->
   <label for="id_membre">id_membre</label>
   <input type="text" id="id_membre" name="id_membre">
   

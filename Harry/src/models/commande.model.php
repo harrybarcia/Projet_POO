@@ -11,15 +11,15 @@ class CommandeModel{
     $this->connexion=$db->getPDO();
   }
 
-  public function insert($id_commande, $id_membre, $id_vehicule, $id_agence, $date_d, $date_f, $prix_total){
-
-  $request= $this->connexion->prepare("INSERT INTO Commande (id_commande,id_membre,id_vehicule,id_agence,date_d,date_f,prix_total,date_enregistrement) VALUES (:id_commande,:id_membre,:id_vehicule,:id_agence,:date_d,:date_f,:prix_total, NOW())");
-
-    //
+  public function insert($id_membre, $id_vehicule, $id_agence, $date_d, $date_f, $prix_total){
+//$id_commande, 
+  $request= $this->connexion->prepare("INSERT INTO Commande (id_membre,id_vehicule,id_agence,date_d,date_f,prix_total,date_enregistrement) VALUES (:id_membre,:id_vehicule,:id_agence,:date_d,:date_f,:prix_total, NOW())");
+//id_commande,
+//:id_commande,
     //
     $request->execute([
 
-      ":id_commande"=>$id_commande,
+      // ":id_commande"=>$id_commande,
       ":id_membre"=>$id_membre,
       ":id_vehicule"=>$id_vehicule,
       ":id_agence"=>$id_agence,
@@ -29,12 +29,12 @@ class CommandeModel{
 
   }
 
-  public function read(){
-    $request = $this->connexion->prepare('SELECT * FROM Commande');
-    $request->execute();
-    $result = $request->fetchAll(PDO::FETCH_ASSOC);
-    return $result;
-  }
+  // public function read(){
+  //   $request = $this->connexion->prepare('SELECT * FROM Commande');
+  //   $request->execute();
+  //   $result = $request->fetchAll(PDO::FETCH_ASSOC);
+  //   return $result;
+  // }
   
 }
 

@@ -2,7 +2,7 @@
 
 class CommandeController{
 
-  private $id_commande;
+  // private $id_commande;
   private $id_membre;
   private $id_vehicule;
   private $id_agence;
@@ -10,10 +10,10 @@ class CommandeController{
   private $date_f;
   private $prix_total;
 
-  public function __construct($IC,$IM, $IV, $IA, $DD, $DF, $PT)
-  //
+  public function __construct($IM, $IV, $IA, $DD, $DF, $PT)
+  //$IC,
   {
-    $this->set_id_commande($IC);
+    // $this->set_id_commande($IC);
     $this->set_id_membre($IM);
     $this->set_id_vehicule($IV);
     $this->set_id_agence($IA);
@@ -23,13 +23,13 @@ class CommandeController{
     
   }
   
-  public function get_id_commande(){
-    return $this->id_commande;
-  }
+  // public function get_id_commande(){
+  //   return $this->id_commande;
+  // }
   
-  public function set_id_commande($IC){
-    return $this->id_commande = $IC;
-  }
+  // public function set_id_commande($IC){
+  //   return $this->id_commande = $IC;
+  // }
   
   
   public function get_id_membre(){
@@ -87,8 +87,8 @@ class CommandeController{
   
   public function inscription(){
     $commandeModel = new CommandeModel;
-    $commandeModel->insert( $this->id_commande, $this->id_membre, $this->id_vehicule,$this->id_agence, $this->date_d, $this->date_f, $this->prix_total);
-
+    $commandeModel->insert(  $this->id_membre, $this->id_vehicule,$this->id_agence, $this->date_d, $this->date_f, $this->prix_total);
+//$this->id_commande,
   }
 }
 ?>
