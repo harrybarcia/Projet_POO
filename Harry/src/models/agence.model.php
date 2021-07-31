@@ -20,7 +20,7 @@ class AgenceModel{
       ":ville"=>$villeAgence,
       ":cp"=>$cpAgence,
       ":description"=>$descriptionAgence,
-      ":photo"=>$photoAgence
+      ":photo"=>$photoAgence 
     ]);
 
   }
@@ -30,6 +30,7 @@ class AgenceModel{
     $request->execute();
     $result = $request->fetchAll(PDO::FETCH_ASSOC);
     return $result;
+
   }
 
   

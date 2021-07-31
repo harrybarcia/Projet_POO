@@ -26,14 +26,14 @@ if (!empty($_POST['titre']) && !empty($_POST['marque']) && !empty($_POST['modele
     }
   }
 }
-
+// retourne toutes les agences
 $result = new AgenceModel;
 // var_dump($result);
 $results = $result->read();
 // echo '<pre>';
 // var_dump($results);
 // echo '</pre>';
-
+// retourne touts les véhicules avec l'agence correspondante (jointure)
 $resultOne = new VehiculeModel;
 $resultUn = $resultOne->read();
 // echo '<pre>';

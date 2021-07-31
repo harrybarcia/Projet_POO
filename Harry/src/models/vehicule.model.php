@@ -17,10 +17,9 @@ class VehiculeModel
     // var_dump($IDAgence, $titreVehicule, $marqueVehicule, $modeleVehicule, $descriptionVehicule, $photoVehicule, $prixVehicule);
     // var_dump('Test model');
 
-    $request = $this->connexion->prepare('INSERT INTO vehicule 
-    (id_agence, titre_vehicule, marque, modele, description_vehicule, photo_vehicule, prix_journalier)
-     VALUES 
-    (:id_agence, :titre_vehicule, :marque, :modele, :description, :photo, :prix_journalier)');
+    $request = $this->connexion->prepare(
+      'INSERT INTO vehicule (id_agence, titre_vehicule, marque, modele, description_vehicule, photo_vehicule, prix_journalier)
+        VALUES (:id_agence, :titre_vehicule, :marque, :modele, :description, :photo, :prix_journalier)');
 
 
     // 'INSERT INTO vehicule (id_agence, titre_vehicule, marque, model, description, photo, prix_journalier) VALUES (:id_agence, :titre_vehicule, :marque, :modele, :description, :photo, :prix_journalier)'

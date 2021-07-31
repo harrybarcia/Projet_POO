@@ -1,26 +1,22 @@
 
 <?php
-
+// ############# Code PHP
 require_once('../src/controllers/membre.controller.php');
 require_once('../src/models/membre.model.php');
 
-
 // commentaire 
-
 if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty(['nom']) && !empty($_POST['prenom']) && !empty($_POST['email'])){
-
     $membre = new MembreController($_POST['pseudo'],$_POST['pass'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['civilite'],$_POST['statut']);
-
     // 
     $membre->inscription();
 
  
 }
 
-$results= new MembreModel;
-$tableau=$results->read();
 
 ?>
+
+<!-- Code HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +42,13 @@ $tableau=$results->read();
     </tr>
 
 
-    <?php foreach ($tableau as $values):?>
+    <?php
+    // Code PHP 
+    // Get users from databases
+    $results= new MembreModel;
+    $tableau=$results->read();
+    foreach ($tableau as $values):
+    ?>
   <tr>
   <td><?=$values['pseudo']?></td>
   <td><?=$values['pass']?></td>
