@@ -2,19 +2,30 @@
 
 require_once('../src/controllers/commande.controller.php');
 require_once('../src/models/commande.model.php');
+require_once('../src/models/agence.model.php');
+require_once('../src/controllers/agence.controller.php');
+require_once('../src/models/vehicule.model.php');
+require_once('../src/controllers/vehicule.controller.php');
 
 
-if (!empty($_POST['id_membre']) && !empty($_POST['id_vehicule']) && !empty($_POST['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) && !empty($_POST['prix_total'])){
+if (!empty($_POST['id_membre']) && !empty($_POST['id_vehicule']) && !empty($_GET['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) && !empty($_POST['prix_total'])){
    //$_POST['id_commande']) && !empty(
     echo "test 1";
     
-    $commande = new CommandeController( $_POST['id_membre'], $_POST['id_vehicule'], $_POST['id_agence'], $_POST['date_d'], $_POST['date_f'], $_POST['prix_total']);
+    $commande = new CommandeController( $_POST['id_membre'], $_POST['id_vehicule'], $_GET['id_agence'], $_POST['date_d'], $_POST['date_f'], $_POST['prix_total']);
     //$_POST['id_commande'],
     $commande->inscription();
 
     echo "test 2";
 }
 
+$result = new AgenceModel;
+// var_dump($result);
+$results = $result->read();
+
+$result2 = new VehiculeModel;
+// var_dump($result);
+$results2 = $result2->read_agence($_GET["id_agence"]);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,7 +40,20 @@ if (!empty($_POST['id_membre']) && !empty($_POST['id_vehicule']) && !empty($_POS
 <body>
   <h1>Choix du véhicule</h1>
 
-  <form action="commande.php" method="post">
+  <form action="commande.php" method="get">
+
+    
+    <select name="id_agence">
+        <option>--Selection Agence--</option>
+        <?php foreach ($results as $values) : ?>
+          <option value="<?= $values['id_agence']; ?>"><?= $values["titre_agence"]; ?></option>
+        <?php endforeach; ?>
+      </select>
+      <button>Changer d'agence</button>
+    
+  </form>
+
+  <form action="commande.php?id_agence=<?= $_GET['id_agence']; ?>" method="post">
 
   <!-- <label for="id_commande">id_commande</label>
   <input type="text" id="id_commande" name="id_commande">
@@ -37,14 +61,15 @@ if (!empty($_POST['id_membre']) && !empty($_POST['id_vehicule']) && !empty($_POS
   <label for="id_membre">id_membre</label>
   <input type="text" id="id_membre" name="id_membre">
   
-  <label for="id_vehicule">Vehicule</label>
-  <input type="text" id="id_vehicule" name="id_vehicule">
   
-  <select name="id_agence">
-        <option value="1">Agence 1</option>
-        <option value="2">Agence 2</option>
-
+  
+  <select name="id_vehicule">
+      <option>--Selection vehicule--</option>
+      <?php foreach ($results2 as $values) : ?>
+        <option value="<?= $values['id_vehicule']; ?>"><?= $values["titre_vehicule"]; ?></option>
+      <?php endforeach; ?>
     </select>
+
 
   <label for="date_d">date_d</label>
   <input type="date" id="date_d" name="date_d">

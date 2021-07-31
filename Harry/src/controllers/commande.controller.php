@@ -90,5 +90,11 @@ class CommandeController{
     $commandeModel->insert(  $this->id_membre, $this->id_vehicule,$this->id_agence, $this->date_d, $this->date_f, $this->prix_total);
 //$this->id_commande,
   }
+
+
 }
+
+
+
+
 ?>
