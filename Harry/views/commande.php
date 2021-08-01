@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once('../src/controllers/commande.controller.php');
 require_once('../src/models/commande.model.php');
 require_once('../src/models/agence.model.php');
@@ -9,9 +9,9 @@ require_once('../src/models/membre.model.php');
 require_once('../src/controllers/vehicule.controller.php');
 
 
-if (!empty($_POST['id_membre']) && !empty($_POST['id_vehicule']) && !empty($_GET['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) && !empty($_POST['prix_total'])) {
+if (!empty($_SESSION['sess_user_id']) && !empty($_POST['id_vehicule']) && !empty($_GET['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) && !empty($_POST['prix_total'])) {
 
-  $commande = new CommandeController($_POST['id_membre'], $_POST['id_vehicule'], $_GET['id_agence'], $_POST['date_d'], $_POST['date_f'], $_POST['prix_total']);
+  $commande = new CommandeController($_SESSION['sess_user_id'], $_POST['id_vehicule'], $_GET['id_agence'], $_POST['date_d'], $_POST['date_f'], $_POST['prix_total']);
   //envoi dans la BDD
   $commande->inscription();
   echo ("Ta caisse est bien commandée!");
@@ -42,8 +42,8 @@ $results2 = $result2->read_agence($_GET["id_agence"]);
     <!-- <label for="id_commande">id_commande</label>
     <input type="text" id="id_commande" name="id_commande">
     -->
-    <label for="id_membre">id_membre</label>
-    <input type="text" id="id_membre" name="id_membre">
+<label for="id_membre">id_membre</label>
+    <input type="text" id="id_membre" name="id_membre" value=<?=$_SESSION['sess_user_id']?>>
 
 
 

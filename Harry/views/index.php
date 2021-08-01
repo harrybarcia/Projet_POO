@@ -9,17 +9,21 @@ $msg = "";
 if(isset($_POST['submitBtnLogin'])) {
 	$pseudo = trim($_POST['pseudo']);
 	$pass = trim($_POST['pass']);
+
 	if($pseudo != "" && $pass != "") {
 		try {
 			$query = "select * from `membre` where `pseudo`=:pseudo and `pass`=:pass";
+
 			$stmt = $db->getPDO()->prepare($query);
 			$stmt->bindParam('pseudo', $pseudo, PDO::PARAM_STR);
 			$stmt->bindValue('pass', $pass, PDO::PARAM_STR);
 			$stmt->execute();
 			$count = $stmt->rowCount();
 			$row   = $stmt->fetch(PDO::FETCH_ASSOC);
+
 			if($count == 1 && !empty($row)) {
-				/******************** Your code ***********************/
+
+								/******************** Your code ***********************/
 				$_SESSION['sess_user_id']   = $row['id_membre'];
 				$_SESSION['sess_pseudo'] = $row['pseudo'];
 				$_SESSION['sess_name'] = $row['nom'];
@@ -96,7 +100,7 @@ label { margin-top:20px; margin-bottom:3px; font-weight:bold;}
 		<form method="post">
 		<table class="loginTable">
 		  <tr>
-			<th>ADMIN PANEL LOGIN</th>
+			<th>Connexion</th>
 		  </tr>
 		  <tr>
 			<td>

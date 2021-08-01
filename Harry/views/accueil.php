@@ -5,6 +5,7 @@ session_start();
 // print_r($_SESSION);
 if(isset($_SESSION['sess_user_id']) && $_SESSION['sess_user_id'] != "") {
 	echo '<h1>Bienvenu '.$_SESSION['sess_name'].' !</h1>';
+  print_r($_SESSION);
 } else { 
 	header('location:index.php');
 }
