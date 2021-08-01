@@ -3,7 +3,6 @@
 class MembreModel{
   
   private $connexion;
-
   public function __construct()
   {
     $db= new Database();
@@ -18,7 +17,6 @@ class MembreModel{
     //
     //
     $request->execute([
-
       ":pseudo"=>$PseudoMembre,
       ":pass"=>$PassMembre,
       ":nom"=>$NomMembre,
@@ -35,6 +33,14 @@ class MembreModel{
   public function read(){
     $request = $this->connexion->prepare('SELECT * FROM membre');
     $request->execute();
+    $result = $request->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+
+  public function read_id_actuel($id_membre_actuel){ //récup membre actuel
+    $request = $this->connexion->prepare('SELECT id_membre FROM membre WHERE id_membre=:id_membre');
+
+    $request->execute([":id_membre"=>$id_membre_actuel]);
     $result = $request->fetchAll(PDO::FETCH_ASSOC);
     return $result;
   }

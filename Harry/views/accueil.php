@@ -1,6 +1,15 @@
 
 <?php
 
+session_start();
+// print_r($_SESSION);
+if(isset($_SESSION['sess_user_id']) && $_SESSION['sess_user_id'] != "") {
+	echo '<h1>Bienvenu '.$_SESSION['sess_name'].' !</h1>';
+} else { 
+	header('location:index.php');
+}
+
+
 require_once('../src/controllers/commande.controller.php');
 require_once('../src/models/commande.model.php');
 require_once('../src/models/agence.model.php');
@@ -28,13 +37,13 @@ $results = $result->read(($_GET["id_agence"]));
 </head>
 <body>
 <?php
-// me donne un tableau de toutes les agences
+// j'instancie un nouvel objet agence model pour faire appel à la méthode read
 $result = new AgenceModel;
-// var_dump($result);
+// la méthode read me donne le tableau de toutes les agences
 $results = $result->read();
 
 ?>
-  <h1> Choisir son agence </h1>
+  <h1> Choisis ton agence </h1>
   <form action="commande.php" method="get">
 
 
@@ -48,6 +57,13 @@ $results = $result->read();
 
   </form>
 
+
+
+  <?php
+  
+  echo'. <h4><a href="logout.php">Se déconnecter</a></h4>';
+  
+  ?>
 
 
 

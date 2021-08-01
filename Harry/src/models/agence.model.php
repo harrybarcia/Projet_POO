@@ -24,7 +24,7 @@ class AgenceModel{
     ]);
 
   }
-
+// requête pour récupérer toutes les agences
   public function read(){
     $request = $this->connexion->prepare('SELECT * FROM agences');
     $request->execute();
@@ -33,9 +33,7 @@ class AgenceModel{
 
   }
 
-  
-  
 }
 
 require_once('../src/config/Database.php');
-
+?>

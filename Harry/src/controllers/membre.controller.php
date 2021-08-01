@@ -1,7 +1,7 @@
 <?php
 
 class MembreController{
-
+  private $IDMembre;
   private $PseudoMembre;
   private $PassMembre;
   private $NomMembre;
@@ -24,10 +24,16 @@ class MembreController{
     $this->setStatutMembre($SM);
   }
   
+  
+    public function getIDMembre()
+    {
+      return $this->IDMembre;
+      
+    }
   public function getPseudoMembre(){
     return $this->PseudoMembre;
   }
-
+  
   public function setPseudoMembre($PseudoM){
     return $this->PseudoMembre = $PseudoM;
   }

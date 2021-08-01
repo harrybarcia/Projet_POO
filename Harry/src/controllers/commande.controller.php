@@ -2,6 +2,7 @@
 
 class CommandeController{
 
+
   // private $id_commande;
   private $id_membre;
   private $id_vehicule;
@@ -9,10 +10,12 @@ class CommandeController{
   private $date_d;
   private $date_f;
   private $prix_total;
+  
 
   public function __construct($IM, $IV, $IA, $DD, $DF, $PT)
   //$IC,
   {
+    echo ("test 1");
     // $this->set_id_commande($IC);
     $this->set_id_membre($IM);
     $this->set_id_vehicule($IV);

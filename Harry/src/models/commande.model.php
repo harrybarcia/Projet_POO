@@ -6,7 +6,7 @@ class CommandeModel{
 
   public function __construct()
   {
-    echo "test 1";
+    
     $db= new Database();
     $this->connexion=$db->getPDO();
   }
@@ -27,10 +27,10 @@ class CommandeModel{
       ":date_f"=>$date_f,
       ":prix_total"=>$prix_total]);
 
-      //Ajout requete Read prepare
-      
+// connexion à la BDD      
       $pdo = new PDO('mysql:host=localhost;dbname=projet_poo', 'root', '');
-      // AS : permet de créer un alias, ici véhicule peut être appelé par v.
+      
+// préparation requête de tous mes véhicules dans un tableau joint avec les agences
     $request = $pdo->prepare('SELECT titre_vehicule, modele, marque, v.description_vehicule, prix_journalier, titre_agence FROM vehicule AS v LEFT JOIN agences AS a ON a.id_agence=v.id_agence');
     $request->execute();
       // $result contient toutes mes voitures.
@@ -42,12 +42,12 @@ class CommandeModel{
     }
 
     public function read(){ 
-      // je récupère toutes les agences
+      // je récupère les données de mes agences couplées aux données des commandes en se basant sur l'id_agence
       $request = $this->connexion->prepare('SELECT * FROM agences LEFT JOIN commande ON commande.id_agence = agences.id_agence');
       $request->execute();
       $result = $request->fetchAll(PDO::FETCH_ASSOC);
       return $result;
-      // je récupère toutes les voitures
+      // je récupère les données de mes véhicules couplées aux données des commandes en se basant sur l'id_vehicule
       
       $request2 = $this->connexion->prepare('SELECT * FROM vehicule LEFT JOIN commande ON commande.id_vehicule = vehicule.id_vehicule');
       $request2->execute();

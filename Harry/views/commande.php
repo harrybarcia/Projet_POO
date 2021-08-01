@@ -5,25 +5,23 @@ require_once('../src/models/commande.model.php');
 require_once('../src/models/agence.model.php');
 require_once('../src/controllers/agence.controller.php');
 require_once('../src/models/vehicule.model.php');
+require_once('../src/models/membre.model.php');
 require_once('../src/controllers/vehicule.controller.php');
 
 
 if (!empty($_POST['id_membre']) && !empty($_POST['id_vehicule']) && !empty($_GET['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) && !empty($_POST['prix_total'])) {
-  //$_POST['id_commande']) && !empty(
-  echo "test 1";
 
   $commande = new CommandeController($_POST['id_membre'], $_POST['id_vehicule'], $_GET['id_agence'], $_POST['date_d'], $_POST['date_f'], $_POST['prix_total']);
-  //$_POST['id_commande'],
+  //envoi dans la BDD
   $commande->inscription();
-
-  echo "test 2";
+  echo ("Ta caisse est bien commandée!");
 }
-
-
-//me donne un tableau de tous les véhicules dans l'agence récupérée dans le get id agence
+  //me donne un tableau de tous les véhicules dans l'agence récupérée dans le get id agence
 $result2 = new VehiculeModel;
 // var_dump($result);
 $results2 = $result2->read_agence($_GET["id_agence"]);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -38,7 +36,7 @@ $results2 = $result2->read_agence($_GET["id_agence"]);
 <body>
 
 
-  
+
   <h1> Choisir son véhicule </h1>
   <form action="commande.php?id_agence=<?= $_GET['id_agence']; ?>" method="post">
     <!-- <label for="id_commande">id_commande</label>
@@ -57,6 +55,7 @@ $results2 = $result2->read_agence($_GET["id_agence"]);
     </select>
 
 
+
     <label for="date_d">date_d</label>
     <input type="date" id="date_d" name="date_d">
 
@@ -68,6 +67,8 @@ $results2 = $result2->read_agence($_GET["id_agence"]);
 
     </select>
     <button>Enregistrer</button>
+
+    
 
   </form>
 </body>
