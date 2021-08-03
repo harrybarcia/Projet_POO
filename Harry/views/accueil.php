@@ -5,6 +5,10 @@ print_r("page accueil.php");
 echo "<br>";
 print_r("dollar_SESSION[sess_user_id]: ");
 print_r($_SESSION['sess_user_id']);
+echo "<br>";
+print_r("dollar_SESSION: ");
+print_r($_SESSION);
+
 // si mon utilisateur existe alors msg de bienvenue
 if(isset($_SESSION['sess_user_id']) && $_SESSION['sess_user_id'] != "") {
   echo '<h1>Tu as bien été identifié '.$_SESSION['sess_name'].'</h1>';
@@ -61,10 +65,7 @@ $results = $result->read();
 
   </form>
 
-
-
-  <?php
-  
+<?php 
   echo'. <h4><a href="logout.php">Se déconnecter</a></h4>';
   
   ?>

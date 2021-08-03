@@ -9,19 +9,30 @@ require_once('../src/models/membre.model.php');
 require_once('../src/controllers/vehicule.controller.php');
 
 
-if (!empty($_SESSION['sess_user_id']) && !empty($_POST['id_vehicule']) && !empty($_GET['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) && !empty($_POST['prix_total'])) {
+if (!empty($_SESSION['sess_user_id']) && !empty($_POST['id_vehicule']) && !empty($_GET['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) ) {
 
-  $commande = new CommandeController($_SESSION['sess_user_id'], $_POST['id_vehicule'], $_GET['id_agence'], $_POST['date_d'], $_POST['date_f'], $_POST['prix_total']);
+  $commande = new CommandeController($_SESSION['sess_user_id'], $_POST['id_vehicule'], $_GET['id_agence'], $_POST['date_d'], $_POST['date_f']);
   //envoi dans la BDD
+
+
+  $dateOne = new DateTime($_POST['date_d']);
+  $dateTwo = new DateTime($_POST['date_f']);
+  $interval = $dateOne->diff($dateTwo);
+  $prix_total=$interval->days*30;
+
+  echo ("Ta caisse est bien commandée! Cela te coutera:" . $prix_total . "€ <br>");
+ 
+
+
+  
   $commande->inscription();
-  echo ("Ta caisse est bien commandée!");
+
+
 }
   //me donne un tableau de tous les véhicules dans l'agence récupérée dans le get id agence
 $result2 = new VehiculeModel;
 // var_dump($result);
 $results2 = $result2->read_agence($_GET["id_agence"]);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -42,12 +53,11 @@ $results2 = $result2->read_agence($_GET["id_agence"]);
     <!-- <label for="id_commande">id_commande</label>
     <input type="text" id="id_commande" name="id_commande">
     -->
-<label for="id_membre">id_membre</label>
-    <input type="text" id="id_membre" name="id_membre" value=<?=$_SESSION['sess_user_id']?>>
 
 
 
-    <select name="id_vehicule">
+
+    <select name="id_vehicule" >
       <option>--Selection vehicule--</option>
       <?php foreach ($results2 as $values) : ?>
         <option value="<?= $values['id_vehicule']; ?>"><?= $values["titre_vehicule"]; ?></option>
@@ -62,15 +72,20 @@ $results2 = $result2->read_agence($_GET["id_agence"]);
     <label for="date_f">date_f</label>
     <input type="date" id="date_f" name="date_f">
 
-    <label for="prix_total">prix_total</label>
-    <input type="text" id="prix_total" name="prix_total">
+    <!-- <label for="prix_total">prix_total</label>
+    <input type="text" id="prix_total" name="prix_total"> -->
 
     </select>
+
     <button>Enregistrer</button>
 
-    
+    </form>
 
-  </form>
+
+
+
+
+
 </body>
 
 </html>

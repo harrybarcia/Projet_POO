@@ -12,18 +12,18 @@ class CommandeController{
   private $prix_total;
   
 
-  public function __construct($IM, $IV, $IA, $DD, $DF, $PT)
+  public function __construct($IM, $IV, $IA, $DD, $DF)
   //$IC,
   {
-    echo ("test 1");
+    echo ("test 1 <br>");
     // $this->set_id_commande($IC);
     $this->set_id_membre($IM);
     $this->set_id_vehicule($IV);
     $this->set_id_agence($IA);
     $this->set_date_d($DD);
     $this->set_date_f($DF);
-    $this->set_prix_total($PT);
-    
+    $this-> set_prix_total();
+
   }
   
   // public function get_id_commande(){
@@ -83,12 +83,20 @@ class CommandeController{
     return $this->prix_total;
   }
 
-  public function set_prix_total($PT){
-    return $this->prix_total = $PT;
+  public function set_prix_total(){
+    $dateOne = new DateTime($_POST['date_d']);
+    $dateTwo = new DateTime($_POST['date_f']);
+    $interval = $dateOne->diff($dateTwo);
+    return $this->prix_total=$interval->days*30;
+    
   }
   
   
+  
   public function inscription(){
+    echo ("test 2<br>");
+
+    print_r ($_POST);
     $commandeModel = new CommandeModel;
     $commandeModel->insert(  $this->id_membre, $this->id_vehicule,$this->id_agence, $this->date_d, $this->date_f, $this->prix_total);
 //$this->id_commande,

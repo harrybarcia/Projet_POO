@@ -16,7 +16,10 @@ class CommandeModel{
   $request= $this->connexion->prepare("INSERT INTO Commande (id_membre,id_vehicule,id_agence,date_d,date_f,prix_total,date_enregistrement) VALUES (:id_membre,:id_vehicule,:id_agence,:date_d,:date_f,:prix_total, NOW())");
 //id_commande,
 //:id_commande,
-    //
+print_r("test3");
+echo ("<pre>");
+print_r($request);
+echo ("</pre>");
     $request->execute([
 
       // ":id_commande"=>$id_commande,
