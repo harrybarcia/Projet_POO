@@ -1,16 +1,19 @@
-
-<?php
+<?php 
 
 session_start();
-// print_r($_SESSION);
+print_r("page accueil.php");
+echo "<br>";
+print_r("dollar_SESSION[sess_user_id]: ");
+print_r($_SESSION['sess_user_id']);
+// si mon utilisateur existe alors msg de bienvenue
 if(isset($_SESSION['sess_user_id']) && $_SESSION['sess_user_id'] != "") {
-	echo '<h1>Bienvenu '.$_SESSION['sess_name'].' !</h1>';
-  print_r($_SESSION);
+  echo '<h1>Tu as bien été identifié '.$_SESSION['sess_name'].'</h1>';
+  echo '<h4><a href="logout.php">Logout</a></h4>';
 } else { 
-	header('location:index.php');
+  header('location:accueil.php');
 }
-
-
+?>
+<?php
 require_once('../src/controllers/commande.controller.php');
 require_once('../src/models/commande.model.php');
 require_once('../src/models/agence.model.php');
