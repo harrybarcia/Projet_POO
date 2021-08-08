@@ -14,7 +14,6 @@ include("../src/config/database.php");
   </div>
 	
   <form method="post" action="register.php">
-  	<?php include('errors.php'); ?>
   	<div class="input-group">
   	  <label>pseudo</label>
   	  <input type="text" name="pseudo" >

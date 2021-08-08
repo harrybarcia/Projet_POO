@@ -16,10 +16,10 @@ class CommandeModel{
   $request= $this->connexion->prepare("INSERT INTO Commande (id_membre,id_vehicule,id_agence,date_d,date_f,prix_total,date_enregistrement) VALUES (:id_membre,:id_vehicule,:id_agence,:date_d,:date_f,:prix_total, NOW())");
 //id_commande,
 //:id_commande,
-print_r("test3");
-echo ("<pre>");
-print_r($request);
-echo ("</pre>");
+// print_r("test3");
+// echo ("<pre>");
+// print_r($request);
+// echo ("</pre>");
     $request->execute([
 
       // ":id_commande"=>$id_commande,
@@ -55,8 +55,13 @@ echo ("</pre>");
       $request2 = $this->connexion->prepare('SELECT * FROM vehicule LEFT JOIN commande ON commande.id_vehicule = vehicule.id_vehicule');
       $request2->execute();
       $result2 = $request2->fetchAll(PDO::FETCH_ASSOC);
+      echo "<pre>";
+      print_r("result2");
+      print_r($result2);
+      echo "</pre>";
       return $result2;
 
+      
     }
 
     }

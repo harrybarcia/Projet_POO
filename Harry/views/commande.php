@@ -9,30 +9,29 @@ require_once('../src/models/membre.model.php');
 require_once('../src/controllers/vehicule.controller.php');
 
 
-if (!empty($_SESSION['sess_user_id']) && !empty($_POST['id_vehicule']) && !empty($_GET['id_agence']) && !empty($_POST['date_d']) && !empty($_POST['date_f']) ) {
-
-  $commande = new CommandeController($_SESSION['sess_user_id'], $_POST['id_vehicule'], $_GET['id_agence'], $_POST['date_d'], $_POST['date_f']);
-  //envoi dans la BDD
-
-
-  $dateOne = new DateTime($_POST['date_d']);
-  $dateTwo = new DateTime($_POST['date_f']);
-  $interval = $dateOne->diff($dateTwo);
-  $prix_total=$interval->days*30;
-
-  echo ("Ta caisse est bien commandée! Cela te coutera:" . $prix_total . "€ <br>");
- 
-
-
-  
-  $commande->inscription();
-
-
-}
   //me donne un tableau de tous les véhicules dans l'agence récupérée dans le get id agence
 $result2 = new VehiculeModel;
 // var_dump($result);
+// print_r("test get id agence <br>");
+// print_r($_GET['id_agence']);
+// echo "<br>";
+print_r("test post <br>");
+print_r($_POST);
+// echo "<br>";
 $results2 = $result2->read_agence($_GET["id_agence"]);
+// echo "<pre>";
+print_r("results2");
+print_r($results2);
+// echo "</pre>";
+// print_r("pj <br>");
+echo "<br>";
+
+
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -42,28 +41,46 @@ $results2 = $result2->read_agence($_GET["id_agence"]);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Choix des véhicules</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
 <body>
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>Titre Véhicule</th>
+        <th>Modèle</th>
+        <th>Prix Journalier</th>
+        <th>Photo</th>
+      </tr> 
+      </thead>
+      <?php foreach ($results2 as $values): ?>
+      <tr>
+        <td><?=$values['titre_vehicule'];?></td>
+        <td><?=$values['modele'];?></td>
+        <td><?=$values['prix_journalier'];?></td>
+        <td><img src="<?= $values['photo_vehicule']?>" style="width:100px" alt=""></td>
+      </tr>  
+      <?php endforeach; ?>
+      
+    </table>
 
+  </div>
 
 
   <h1> Choisir son véhicule </h1>
-  <form action="commande.php?id_agence=<?= $_GET['id_agence']; ?>" method="post">
-    <!-- <label for="id_commande">id_commande</label>
-    <input type="text" id="id_commande" name="id_commande">
-    -->
-
-
-
-
+  <!-- ici l'id_agence sera égal à la valeur postée. A l'issue du post, ma commande 
+  sera enregistrée et j'aterrirai sur l'url inscrite dans value"  -->
+  <!-- le post d'un get le transforme en post comme toutes autre valeur -->
+  <!-- on a mis "commande.php?id_agence < ?= $_GET['id_agence']; ?>" pour actualiser la page et lancer l'inscription. -->
+  <form action="recapcommande.php?id_agence=<?= $_GET['id_agence']; ?>" method="post">
     <select name="id_vehicule" >
       <option>--Selection vehicule--</option>
       <?php foreach ($results2 as $values) : ?>
         <option value="<?= $values['id_vehicule']; ?>"><?= $values["titre_vehicule"]; ?></option>
       <?php endforeach; ?>
     </select>
-
 
 
     <label for="date_d">date_d</label>
@@ -80,6 +97,7 @@ $results2 = $result2->read_agence($_GET["id_agence"]);
     <button>Enregistrer</button>
 
     </form>
+  <h4><a href="logout.php">Logout</a></h4>;
 
 
 

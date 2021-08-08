@@ -10,6 +10,8 @@ if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty(['nom']) && !em
     $membre = new MembreController($_POST['pseudo'],$_POST['pass'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['civilite'],$_POST['statut']);
     // 
     $membre->inscription();
+    header("location:index.php?message=tu as bien été enregistré, identifie toi");
+    
 
     }
 
@@ -66,7 +68,7 @@ if (!empty($_POST['pseudo']) && !empty($_POST['pass']) && !empty(['nom']) && !em
 		<option value="membre">Membre</option>
 	</select>
   
-  <button url="accueil.php">Enregistrer</button>
+  <button>Enregistrer</button>
 	</form>
 
 

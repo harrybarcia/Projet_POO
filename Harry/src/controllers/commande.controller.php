@@ -10,9 +10,10 @@ class CommandeController{
   private $date_d;
   private $date_f;
   private $prix_total;
+  private $pj;
   
 
-  public function __construct($IM, $IV, $IA, $DD, $DF)
+  public function __construct($IM, $IV, $IA, $DD, $DF,$pj)
   //$IC,
   {
     echo ("test 1 <br>");
@@ -22,7 +23,8 @@ class CommandeController{
     $this->set_id_agence($IA);
     $this->set_date_d($DD);
     $this->set_date_f($DF);
-    $this-> set_prix_total();
+    $this-> set_prix_total($DD,$DF,$pj);// me renvoie return $this->prix_total=$interval->days*30;
+    $this->setPj($pj);
 
   }
   
@@ -83,15 +85,19 @@ class CommandeController{
     return $this->prix_total;
   }
 
-  public function set_prix_total(){
-    $dateOne = new DateTime($_POST['date_d']);
-    $dateTwo = new DateTime($_POST['date_f']);
+  public function set_prix_total($DD,$DF,$pj){
+    $dateOne = new DateTime($DD);
+    $dateTwo = new DateTime($DF);
     $interval = $dateOne->diff($dateTwo);
-    return $this->prix_total=$interval->days*30;
+    
+    return $this->prix_total=$interval->days*$pj;
     
   }
   
   
+  public function getPrixVehicule(){
+    return $this->prixVehicule;
+  }
   
   public function inscription(){
     echo ("test 2<br>");
@@ -103,6 +109,13 @@ class CommandeController{
   }
 
 
+
+  public function setPj($pj)
+  {
+    return $this->pj = $pj;
+    
+
+  }
 }
 
 

@@ -122,6 +122,7 @@ class VehiculeController
       $this->prixVehicule
     );
   }
+
 }
 
 

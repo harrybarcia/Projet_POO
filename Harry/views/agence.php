@@ -1,15 +1,3 @@
-<?php 
-session_start();
-print_r($_SESSION);
-if(isset($_SESSION['sess_user_id']) && $_SESSION['sess_user_id'] != "") {
-	echo '<h1>Welcome '.$_SESSION['sess_name'].'</h1>';
-	echo '<h4><a href="logout.php">Logout</a></h4>';
-} else { 
-	header('location:index.php');
-}
-?>
-
-
 <?php
 
 require_once('../src/controllers/agence.controller.php');
@@ -18,9 +6,10 @@ require_once('../src/models/agence.model.php');
 if (!empty($_POST['titre']) && !empty($_POST['adresse']) && !empty(['description']) && !empty($_POST['ville']) && !empty($_POST['cp']) && !empty($_FILES['photo'])) {
   
   if (isset($_FILES['photo'])) {
-    
+    // print_r($_FILES);
     $tmpName = $_FILES['photo']['tmp_name'];
     $name = $_FILES['photo']['name'];
+
     
     $extensions = ['image/jpg', 'image/png', 'image/jpeg'];
     if(in_array($_FILES['photo']['type'], $extensions)){
@@ -45,9 +34,8 @@ if (!empty($_POST['titre']) && !empty($_POST['adresse']) && !empty(['description
 
 $result= new AgenceModel;
 $tableau= $result->read();
-  echo '<pre>';
-  print_r($tableau);
-  echo '</pre>';
+
+
 
 ?>
 <!DOCTYPE html>
@@ -64,9 +52,7 @@ $tableau= $result->read();
 </head>
 <body>
 
-  <?php
-    include_once('./template/header.php');
-  ?>
+
 
 <h1>Gestion des Agences</h1>
 
@@ -86,7 +72,7 @@ $tableau= $result->read();
       </thead>
 
       <?php foreach($tableau as $values): ?>
-
+        
         <tr>
           <td><?= $values['id_agence']?></td>
           <td><?= $values['titre_agence']?></td>
@@ -94,7 +80,10 @@ $tableau= $result->read();
           <td><?= $values['ville']?></td>
           <td><?= $values['cp']?></td>
           <td><?= $values['description']?></td>
-          <td><?= $values['photo']?></td>
+          <td><img src="<?= $values['photo']?>" style="width:100px" alt=""></td>
+
+
+          </td>
         </tr>
 
       <?php endforeach; ?>

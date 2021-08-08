@@ -21,6 +21,8 @@ if (!empty($_POST['titre']) && !empty($_POST['marque']) && !empty($_POST['modele
 
       $vehicule = new VehiculeController($_GET['id_agence'], $_POST['titre'], $_POST['marque'], $_POST['modele'], $_POST['description'], './upload/' . $name, $_POST['prix']);
       $vehicule->inscription();
+      
+      
     } else {
       echo "Mauvaise extension";
     }

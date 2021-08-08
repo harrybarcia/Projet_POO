@@ -5,6 +5,8 @@ include("../src/config/database.php");
 <?php
 $db=new Database;
 $msg = ""; 
+$msgok=$_GET['message'];
+echo $msgok;
 if(isset($_POST['submitBtnLogin'])) {
 	$pseudo = trim($_POST['pseudo']);
 	$pass = trim($_POST['pass']);
@@ -46,6 +48,7 @@ if(isset($_POST['submitBtnLogin'])) {
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>PDO login with PDO connection || Mitrajit's Tech Blog</title>
+<link rel="stylesheet" href="./assets/css/styles.css">
 
 
 </head>
@@ -70,6 +73,9 @@ if(isset($_POST['submitBtnLogin'])) {
 		  <tr>
 			<td><input type="submit" name="submitBtnLogin" id="submitBtnLogin" value="Login" /><span class="loginMsg"><?php echo @$msg;?></span></td>
 		  </tr>
+		  <tr>
+		  <td><p>Vous n'avez pas de compte?<a href="membre.php">S'enregistrer</a>.</p></td>
+</tr>
 		</table>
 		</form>
 	
